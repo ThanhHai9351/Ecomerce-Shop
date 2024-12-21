@@ -1,10 +1,34 @@
-import { Button } from '@mui/material'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { routes } from './routes/index'
+import { DefaultLayout, DefaultLayoutNotShow, DefaultLayoutAdmin } from './components/bar/default-layout'
 
 function App() {
   return (
-    <div>
-      <Button variant='outlined'>aloo</Button>
-    </div>
+    <Router>
+      <Routes>
+        {routes.map((route: any, index: number) => (
+          <Route
+            key={index}
+            path={route.path}
+            element={
+              route.isAdmin ? (
+                <DefaultLayoutAdmin>
+                  <route.element />
+                </DefaultLayoutAdmin>
+              ) : route.isShowHeader ? (
+                <DefaultLayout>
+                  <route.element />
+                </DefaultLayout>
+              ) : (
+                <DefaultLayoutNotShow>
+                  <route.element />
+                </DefaultLayoutNotShow>
+              )
+            }
+          />
+        ))}
+      </Routes>
+    </Router>
   )
 }
 
