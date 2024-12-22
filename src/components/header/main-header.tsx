@@ -3,8 +3,10 @@ import { Search, ShoppingCart } from '@mui/icons-material'
 import Logo from '@/components/logo'
 import AvatarCustomer from '@/components/header/avatar-customer'
 import CartSideBar from '@/components/header/cart-side-bar'
+import { useNavigate } from 'react-router-dom'
 
 const MainHeader = () => {
+  const navigate = useNavigate();
   return (
     <AppBar sx={{ paddingTop: '15px', paddingBottom: '15px' }} position='static' color='inherit' elevation={0}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -35,8 +37,9 @@ const MainHeader = () => {
               py: 1,
             }}
           >
-            {['Catalogs', 'Products', 'Blogs'].map((item) => (
+            {['Collections', 'Products', 'Blogs'].map((item) => (
               <Typography
+                onClick={() => navigate(`/${item.toLowerCase()}`)}
                 key={item}
                 variant='body2'
                 sx={{
