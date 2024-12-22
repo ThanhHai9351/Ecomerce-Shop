@@ -12,10 +12,10 @@ export const categoryApi = createApi({
   reducerPath: 'categoryApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${configs.HOST}/api` }),
   tagTypes: ['Categories'],
-  keepUnusedDataFor: 60, // Cache storage duration
-  refetchOnMountOrArgChange: 30, // Re-fetch duration
-  refetchOnFocus: true, // Re-fetch when the browser regains focus
-  refetchOnReconnect: true, // Re-fetch on reconnect
+  // keepUnusedDataFor: 60, // Cache storage duration
+  // refetchOnMountOrArgChange: 30, // Re-fetch duration
+  // refetchOnFocus: true, // Re-fetch when the browser regains focus
+  // refetchOnReconnect: true, // Re-fetch on reconnect
   endpoints: (build) => ({
     getCategories: build.query<CategoryResponse, { limit?: number; page?: number; search?: string; sortDir?: string }>({
       query: ({ limit, page, search, sortDir }) => {

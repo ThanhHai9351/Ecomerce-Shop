@@ -18,10 +18,10 @@ export const productApi = createApi({
   reducerPath: 'productApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${configs.HOST}/api` }),
   tagTypes: ['Products'],
-  keepUnusedDataFor: 60, // Cache storage duration
-  refetchOnMountOrArgChange: 30, // Re-fetch duration
-  refetchOnFocus: true, // Re-fetch when the browser regains focus
-  refetchOnReconnect: true, // Re-fetch on reconnect
+  // keepUnusedDataFor: 60, // Cache storage duration
+  // refetchOnMountOrArgChange: 30, // Re-fetch duration
+  // refetchOnFocus: true, // Re-fetch when the browser regains focus
+  // refetchOnReconnect: true, // Re-fetch on reconnect
   endpoints: (build) => ({
     getProducts: build.query<
       ProductResponse,

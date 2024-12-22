@@ -7,6 +7,9 @@ const LoginPage = lazy(() => import('@/pages/auth/login'))
 const RegisterPage = lazy(() => import('@/pages/auth/register'))
 //Customer
 const HomePage = lazy(() => import('../pages/customer/home-page'))
+const CategoryCustomerPage = lazy(() => import('@/pages/customer/category'))
+const CategoryDetailPage = lazy(() => import('@/pages/customer/category/category-detail'))
+
 export interface Route {
   path: string
   element: any
@@ -17,13 +20,13 @@ export interface Route {
 export const routes: Route[] = [
   //customer
   { path: '/', element: HomePage, isShowHeader: true, isAdmin: false },
+  { path: '/collections', element: CategoryCustomerPage, isShowHeader: true, isAdmin: false },
+  { path: '/collection/:slug', element: CategoryDetailPage, isShowHeader: true, isAdmin: false },
   //   //admin
   //   { path: "/admin/dashboard", element: (DashboardAdmin), isShowHeader: false, isAdmin: true },
   //   //auth
   { path: '/account/login', element: LoginPage, isShowHeader: false, isAdmin: false },
   { path: '/account/register', element: RegisterPage, isShowHeader: false, isAdmin: false },
-  //   { path: "/account/reset-password", element: ResetPassPage, isShowHeader: false, isAdmin: false },
-  //   { path: "/account/forgot-password", element: ForgortPassPage, isShowHeader: false, isAdmin: false },
   //   // not found page
   {
     path: '*',

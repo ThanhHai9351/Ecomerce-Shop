@@ -7,10 +7,10 @@ export const accountApi = createApi({
   reducerPath: 'accountApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${configs.HOST}/api` }),
   tagTypes: ['Accounts'],
-  keepUnusedDataFor: 60, // cache lưu trữ trong vòng 60s
-  refetchOnMountOrArgChange: 30,
-  refetchOnFocus: true, //gọi lại api khi focus
-  refetchOnReconnect: true, // gọi lại api khi truy cập lại web
+  // keepUnusedDataFor: 60, // cache lưu trữ trong vòng 60s
+  // refetchOnMountOrArgChange: 30,
+  // refetchOnFocus: true, //gọi lại api khi focus
+  // refetchOnReconnect: true, // gọi lại api khi truy cập lại web
   endpoints: (build) => ({
     getAccount: build.query<ResponseAccount, string>({
       query: (accessToken: string) => {

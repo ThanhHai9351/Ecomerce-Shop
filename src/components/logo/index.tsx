@@ -1,8 +1,10 @@
 import { Box, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 
 const Index = ({ width = 70, color = 'black' }: { width: number; color?: string }) => {
+  const navigate = useNavigate();
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box onClick={() => { navigate("/") }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
       <svg width={width} height={width} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' id='blockchain'>
         <circle cx='32' cy='32' r='28' fill='#f3f3f3'></circle>
         <path fill='#d9d9d9' d='M9,50a1,1,0,0,1-.62-1.79l42-33a1,1,0,1,1,1.24,1.58C6.62,52.14,9.53,50,9,50Z'></path>
