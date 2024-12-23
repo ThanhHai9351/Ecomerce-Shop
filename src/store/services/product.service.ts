@@ -6,6 +6,7 @@ interface ProductResponse {
   status: number
   message: string
   data: IProduct[]
+  totalPage: number
 }
 
 interface ProductDetailResponse {
