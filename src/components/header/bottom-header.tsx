@@ -4,10 +4,10 @@ import { AppBar, Toolbar, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 const BottomHeader = () => {
-  const { isFetching, data } = useGetCategoriesQuery({ limit: 10 })
+  const { isLoading, data } = useGetCategoriesQuery({ limit: 10 })
   const categories: ICategory[] | undefined = data?.data
   const navigate = useNavigate();
-  if (isFetching) {
+  if (isLoading || !data) {
     return (
       <AppBar position='static' color='inherit' elevation={0}>
         <Toolbar
@@ -42,7 +42,6 @@ const BottomHeader = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-
     )
   }
   return (

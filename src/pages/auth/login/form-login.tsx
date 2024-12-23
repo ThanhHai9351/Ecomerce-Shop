@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { useLoginAccountMutation } from '@/store/services/account.service'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppContext } from '@/app_provider'
 
 type LoginFormInputs = {
@@ -95,9 +95,9 @@ const FormLogin = () => {
       )}
       <Typography variant='body2' mt={2} textAlign='center'>
         Chưa có tài khoản?{' '}
-        <a href='/account/register' style={{ textDecoration: 'none', color: '#1976d2' }}>
+        <Link to='/account/register' style={{ textDecoration: 'none', color: '#1976d2' }}>
           Đăng ký
-        </a>
+        </Link>
       </Typography>
     </Box>
   )

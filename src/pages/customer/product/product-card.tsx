@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
+import { formatCurrencyVND } from '@/helpers/format';
 
 const ProductCardItem = styled(Card)({
     position: 'relative',
@@ -35,7 +36,14 @@ const ProductDetails = styled(Box)({
     transform: 'scale(0.9)',
 });
 
-const ProductCard = () => {
+interface Props {
+    name: string
+    slug: string
+    imageUrl: string
+    price: number
+}
+
+const ProductCard: FC<Props> = ({ name, slug, imageUrl, price }) => {
     const navigate = useNavigate();
     return (
         <ProductCardItem>
@@ -43,19 +51,19 @@ const ProductCard = () => {
                 className="media"
                 component="img"
                 height="250"
-                image="https://product.hstatic.net/1000360022/product/ao-thun-icondenim-prominent-line__3__8ec99a0503334443a06915f0aaa67c99_1024x1024.jpg"
+                image={imageUrl}
                 alt="Product"
                 sx={{
                     transition: 'transform 0.5s ease',
                 }}
             />
             <CardContent>
-                <Typography variant="h6">Tên sản phẩm</Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Giá: 100.000đ
+                <Typography variant="h6">{name.length > 25 ? name.slice(0, 25) + '...' : name}</Typography>
+                <Typography variant="body1" color="red" sx={{ fontSize: 'bold' }}>
+                    {formatCurrencyVND(price)}
                 </Typography>
             </CardContent>
-            <ProductDetails onClick={() => navigate('#')} className="details">
+            <ProductDetails onClick={() => navigate(`/product/${slug}`)} className="details">
                 Xem chi tiết
             </ProductDetails>
         </ProductCardItem>

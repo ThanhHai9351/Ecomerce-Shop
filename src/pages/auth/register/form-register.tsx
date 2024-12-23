@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRegisterAccountMutation } from '@/store/services/account.service'
 
 export type RegisterFormInputs = {
@@ -122,9 +122,9 @@ const FormRegister = () => {
       </Button>
       <Typography variant='body2' mt={2} textAlign='center'>
         Đã có tài khoản?{' '}
-        <a href='/account/login' style={{ textDecoration: 'none', color: '#1976d2' }}>
+        <Link to='/account/login' style={{ textDecoration: 'none', color: '#1976d2' }}>
           Đăng nhập
-        </a>
+        </Link>
       </Typography>
     </Box>
   )

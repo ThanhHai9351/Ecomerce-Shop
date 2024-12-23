@@ -12,13 +12,12 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useGetAccountQuery } from '@/store/services/account.service';
 import { IAccount } from '@/lib/types';
-import { Typography } from '@mui/material';
-import { useAppContext } from '@/app_provider';
+import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export default function AvatarCustomer() {
     const accessToken: string = localStorage.getItem('accessToken') || '';
-    const { isFetching, refetch, data } = useGetAccountQuery(accessToken, {});
+    const { isLoading, refetch, data } = useGetAccountQuery(accessToken, {});
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [isLoggedOut, setIsLoggedOut] = React.useState(false);
     const open = Boolean(anchorEl);
@@ -37,7 +36,7 @@ export default function AvatarCustomer() {
         refetch();
     };
 
-    if (isFetching || isLoggedOut) {
+    if (isLoading || isLoggedOut) {
         return <>
             <React.Fragment>
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -185,11 +184,10 @@ export default function AvatarCustomer() {
                         </MenuItem>
                     </>
                 ) : (
-                    <>
-                        <Link to={"/account/login"}>
-                            <Avatar /> Login
-                        </Link>
-                    </>
+                    <Box p={3} sx={{ textAlign: 'center' }}>
+                        <Button variant='outlined'>Sign In</Button>
+                        <Typography mt={2} >If you don't have account! <Link to={'/account/register'}>Sign Up</Link></Typography>
+                    </Box>
                 )}
             </Menu>
         </React.Fragment>
