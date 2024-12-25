@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Box, Tooltip } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import { formatCurrencyVND } from '@/helpers/format';
@@ -7,17 +7,15 @@ import { formatCurrencyVND } from '@/helpers/format';
 const ProductCardItem = styled(Card)({
     position: 'relative',
     overflow: 'hidden',
-    width: 250,
+    width: '100%',
+    maxWidth: 250,
     transition: 'transform 0.3s ease',
-    '&:hover': {
-        transform: 'scale(1.0)',
-    },
     '&:hover .details': {
         opacity: 1,
         transform: 'scale(1)',
     },
     '&:hover .media': {
-        transform: 'scale(1.3)',
+        transform: 'scale(1.1)',
     },
 });
 
@@ -37,14 +35,16 @@ const ProductDetails = styled(Box)({
 });
 
 interface Props {
-    name: string
-    slug: string
-    imageUrl: string
-    price: number
+    name: string;
+    slug: string;
+    imageUrl: string;
+    price: number;
+    productRating?: number;
 }
 
-const ProductCard: FC<Props> = ({ name, slug, imageUrl, price }) => {
+const ProductCard: FC<Props> = ({ name, slug, imageUrl, price, productRating }) => {
     const navigate = useNavigate();
+
     return (
         <ProductCardItem>
             <CardMedia
@@ -52,19 +52,28 @@ const ProductCard: FC<Props> = ({ name, slug, imageUrl, price }) => {
                 component="img"
                 height="250"
                 image={imageUrl}
-                alt="Product"
+                alt={name}
                 sx={{
                     transition: 'transform 0.5s ease',
                 }}
             />
             <CardContent>
-                <Typography variant="h6">{name.length > 25 ? name.slice(0, 25) + '...' : name}</Typography>
-                <Typography variant="body1" color="red" sx={{ fontSize: 'bold' }}>
+                <Typography variant="h6">
+                    {name.length > 25 ? name.slice(0, 25) + '...' : name}
+                </Typography>
+                <Typography variant="body1" color="red" sx={{ fontWeight: 'bold' }}>
                     {formatCurrencyVND(price)}
                 </Typography>
+                {productRating && (
+                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.9rem' }}>
+                        {`${productRating} / 5 stars`}
+                    </Typography>
+                )}
             </CardContent>
             <ProductDetails onClick={() => navigate(`/product/${slug}`)} className="details">
-                Xem chi tiết
+                <Tooltip title="Click to view details" arrow>
+                    <span>Xem chi tiết</span>
+                </Tooltip>
             </ProductDetails>
         </ProductCardItem>
     );

@@ -1,8 +1,8 @@
 import Loading from "@/components/bar/loading";
 import { IProduct } from "@/lib/types";
-import ProductListing from "@/pages/customer/product/product-listing";
-import SidebarFilters from "@/pages/customer/product/sidebar-filters";
-import Sorter from "@/pages/customer/product/sorter";
+import ProductListing from "@/components/product/product-listing";
+import SidebarFilters from "@/components/product/sidebar-filters";
+import Sorter from "@/components/product/sorter";
 import { useGetProductsQuery } from "@/store/services/product.service";
 import {
     Box,

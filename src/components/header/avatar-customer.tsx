@@ -13,13 +13,14 @@ import Logout from '@mui/icons-material/Logout';
 import { useGetAccountQuery } from '@/store/services/account.service';
 import { IAccount } from '@/lib/types';
 import { Button, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function AvatarCustomer() {
     const accessToken: string = localStorage.getItem('accessToken') || '';
     const { isLoading, refetch, data } = useGetAccountQuery(accessToken, {});
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [isLoggedOut, setIsLoggedOut] = React.useState(false);
+    const navigate = useNavigate();
     const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -90,11 +91,10 @@ export default function AvatarCustomer() {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                    <>
-                        <Link to={"/account/login"}>
-                            <Avatar /> Login
-                        </Link>
-                    </>
+                    <Box p={3} sx={{ textAlign: 'center' }}>
+                        <Button variant='outlined' onClick={() => navigate("/account/login")}>Sign In</Button>
+                        <Typography mt={2} >If you don't have account! <Link to={'/account/register'}>Sign Up</Link></Typography>
+                    </Box>
                 </Menu>
             </React.Fragment>
         </>;
@@ -185,7 +185,7 @@ export default function AvatarCustomer() {
                     </>
                 ) : (
                     <Box p={3} sx={{ textAlign: 'center' }}>
-                        <Button variant='outlined'>Sign In</Button>
+                        <Button variant='outlined' onClick={() => navigate("/account/login")}>Sign In</Button>
                         <Typography mt={2} >If you don't have account! <Link to={'/account/register'}>Sign Up</Link></Typography>
                     </Box>
                 )}

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { Box, Typography, Button, TextField } from "@mui/material";
