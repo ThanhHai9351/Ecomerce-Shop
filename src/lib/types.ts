@@ -28,6 +28,7 @@ export interface IProduct {
   categoryId: string
   items: ISize[]
   category?: ICategory
+  isWhistlisted?: boolean
 }
 
 export interface ISize {

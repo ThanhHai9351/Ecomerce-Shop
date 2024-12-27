@@ -49,8 +49,18 @@ export const productApi = createApi({
       },
     }),
 
-    getProductDetail: build.query<ProductDetailResponse, string>({
-      query: (slug: string) => `product/${slug}`,
+    getProductDetail: build.query<ProductDetailResponse, {slug: string, accessToken: string}>({
+      query: (values: {slug: string, accessToken: string}) => {
+        return {
+          url: `product/${values.slug}`,
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'Authorization': `Bearer ${values.accessToken}`,
+          },
+        }
+      },
     }),
   }),
 })

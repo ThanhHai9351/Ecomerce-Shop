@@ -3,6 +3,8 @@ import { formatCurrencyVND } from "@/helpers/format";
 import type { IProduct } from "@/lib/types";
 import { useEffect, useState, type FC } from "react";
 
+import ButtonWhistlisted from "@/components/product/button-whistlisted";
+
 interface Props {
   product: IProduct;
 }
@@ -79,10 +81,11 @@ const ProductSelector: FC<Props> = ({ product }) => {
         ))}
       </Box>
 
-      <Box mt={2} display="flex" gap={3}>
+      <Box mt={2} display="flex" gap={1}>
         <Button variant="outlined" fullWidth>
           Add To Cart
         </Button>
+        <ButtonWhistlisted product={product} />
       </Box>
     </Box>
   );

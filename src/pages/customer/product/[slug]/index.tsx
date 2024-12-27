@@ -8,7 +8,8 @@ import SessionProduct from "@/components/product/session-product";
 
 const Index = () => {
     const path = useLocation();
-    const { isFetching, data } = useGetProductDetailQuery(path.pathname.split("/")[2] as string);
+    const accessToken = localStorage.getItem("accessToken") || "";
+    const { isFetching, data } = useGetProductDetailQuery({ slug: path.pathname.split("/")[2] as string, accessToken });
     const product: IProduct | undefined = data?.data;
     if (isFetching) {
         return (
